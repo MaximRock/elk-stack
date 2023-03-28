@@ -1,0 +1,25 @@
+---
+
+- name: Update and upgrade apt packages
+  ansible.builtin.apt:
+    #upgrade: "yes"
+    update_cache: true
+
+- name: Allow TCP ports
+  ansible.builtin.iptables:
+    chain: INPUT
+    rule_num: '1'
+    action: insert
+    protocol: TCP
+    jump: ACCEPT
+    destination_port: "{{ item }}"
+  loop: 
+    - '9200'
+    - '5044'
+    - '5601'
+
+- name: Install Java JDK
+  ansible.builtin.apt:
+    name: "default-jdk"
+    update_cache: true
+    

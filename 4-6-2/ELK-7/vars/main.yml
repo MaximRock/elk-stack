@@ -1,0 +1,6 @@
+---
+# vars file for ELK-7
+
+package_elasticsearch_deb: "elasticsearch-7.17.9-amd64.deb"
+package_kibana_deb: "kibana-7.17.9-amd64.deb"
+package_logstash_deb: "logstash-7.17.9-amd64.deb"
