@@ -1,0 +1,29 @@
+---
+
+- name: Copy package Kibana
+  ansible.builtin.copy:
+    src: "packages/{{ package_kibana_deb }}"
+    dest: "/tmp/{{ package_kibana_deb }}"
+
+- name: Install deb packages Kibana
+  ansible.builtin.apt:
+    deb: "/tmp/{{ package_kibana_deb }}"
+    update_cache: true
+
+- name: Updating the config file server.host Kibana
+  ansible.builtin.lineinfile:
+    destfile: "/etc/kibana/kibana.yml"
+    regexp: 'server.host'
+    line: 'server.host: "0.0.0.0"'
+
+- name: Updating the config file elasticsearch.hosts Kibana
+  ansible.builtin.lineinfile:
+    destfile: "/etc/kibana/kibana.yml"
+    regexp: 'elasticsearch.hosts'
+    line: 'elasticsearch.hosts: ["http://localhost:9200"]'
+
+- name: Enable Kibana
+  ansible.builtin.systemd:
+    name: kibana
+    state: reloaded
+    enabled: true

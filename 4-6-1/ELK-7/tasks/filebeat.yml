@@ -1,0 +1,17 @@
+---
+
+- name: Copy package Filebeat
+  ansible.builtin.copy:
+    src: "packages/{{ package_filebeat_deb }}"
+    dest: "/tmp/{{ package_filebeat_deb }}"
+
+- name: Install deb package Filebeat
+  ansible.builtin.apt:
+    deb: "/tmp/{{ package_filebeat_deb }}"
+    update_cache: true
+
+- name: Create file filebeat.yml
+  ansible.builtin.template:
+    src: "templates/templates_filebeat.j2"
+    dest: "/etc/filebeat/filebeat.yml"
+  notify: Enabled Filebeat

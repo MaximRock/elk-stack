@@ -1,0 +1,17 @@
+---
+
+- name: Copy package Logstash
+  ansible.builtin.copy:
+    src: "packages/{{ package_logstash_deb }}"
+    dest: "/tmp/{{ package_logstash_deb }}"
+
+- name: Install deb package Logstash
+  ansible.builtin.apt:
+    deb: "/tmp/{{ package_logstash_deb }}"
+    update_cache: true
+
+- name: Copy config file logstash
+  ansible.builtin.copy:
+    src: "file/logstash.conf"
+    dest: "/etc/logstash/conf.d/logstash.conf"
+  notify: Start Logstash

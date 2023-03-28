@@ -1,0 +1,16 @@
+---
+
+- name: Copy package Elasticsearch
+  ansible.builtin.copy:
+    src: "packages/{{ package_elasticsearch_deb }}"
+    dest: "/tmp/{{ package_elasticsearch_deb }}"
+
+- name: Install deb packages
+  ansible.builtin.apt:
+    deb: "/tmp/{{ package_elasticsearch_deb }}"
+
+- name: Start Elasticsearch
+  ansible.builtin.systemd:
+    name: elasticsearch
+    state: started
+    enabled: true  

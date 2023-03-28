@@ -1,0 +1,16 @@
+---
+# handlers file for ELK-7
+
+
+
+- name: Start Logstash
+  ansible.builtin.systemd:
+    name: logstash
+    state: started
+    enabled: true
+
+- name: Enabled Filebeat    
+  ansible.builtin.systemd:
+    name: filebeat
+    state: started
+    enabled: true

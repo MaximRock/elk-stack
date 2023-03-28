@@ -1,0 +1,22 @@
+---
+# tasks file for ELK-7
+
+- name: Prepare for install Elasticsearch
+  ansible.builtin.include_tasks: tasks/prepare.yml
+  tags: prepare
+
+- name: Install Elasticsearch - 7.17.9
+  ansible.builtin.include_tasks: tasks/elastic.yml
+  tags: elastic
+
+- name: Install Kibana - 7.17.9
+  ansible.builtin.include_tasks: tasks/kibana.yml
+  tags: kibana
+
+- name: Install logstash - 7.19.9
+  ansible.builtin.include_tasks: tasks/logstash.yml
+  tags: logstash
+
+- name: Install filebeat - 7.19.9
+  ansible.builtin.include_tasks: tasks/logstash.yml
+  tags: filebeat
