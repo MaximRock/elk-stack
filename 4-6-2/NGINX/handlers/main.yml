@@ -1,0 +1,8 @@
+---
+# handlers file for NGINX
+
+- name: Enabled Nginx
+  ansible.builtin.systemd:
+    name: nginx
+    state: reloaded
+    enabled: true

@@ -1,0 +1,5 @@
+---
+# vars file for NGINX
+
+ip_server: 158.160.62.130
+worker_connections: 1024
