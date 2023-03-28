@@ -1,0 +1,23 @@
+---
+
+- name: Install Stack Elasticsearch
+  hosts:
+    - elk
+  become: yes
+  become_user: root
+  remote_user: admin
+  roles:
+    - role: ELK-7
+      tags: 
+        - elk
+
+- name: Install NGINX
+  hosts: 
+    - nginx
+  become: yes
+  become_user: root
+  remote_user: admin
+  roles:
+    - role: NGINX
+      tags:
+        - nginx

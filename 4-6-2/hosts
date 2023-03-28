@@ -1,0 +1,5 @@
+[elk]
+ubuntu_elk ansible_host=admin@158.160.55.104
+
+[nginx]
+ubuntu_nginx ansible_host=admin@158.160.35.80
